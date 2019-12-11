@@ -5,13 +5,11 @@ const PrivateRoute = ({ component: Component, ...theRest }) => {
   return (
     <Route
       {...theRest}
-      render={() => {
+      render={props => {
         if (localStorage.getItem("token")) {
-          return <Component />;
+          return <Component {...props} />;
         } else {
-          console.log(
-            "bk: Privateroute.js: Privateroute: Route.render: redirecting"
-          );
+          console.log("Privateroute: Route.render: redirecting");
           return <Redirect to="/login" />;
         }
       }}
