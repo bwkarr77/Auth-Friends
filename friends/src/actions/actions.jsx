@@ -11,7 +11,7 @@ export const HandleChange = "HandleChange";
 export const c1 = "c1";
 export const c2 = "c2";
 
-const apiBase = "http:localhost:5000/api";
+const apiBase = "http://localhost:5000/api";
 const apiLogin = `${apiBase}/login`;
 const apiFriends = `${apiBase}/friends`;
 
@@ -35,7 +35,6 @@ export const getFriends = () => dispatch => {
 export const login = (event, credentials) => dispatch => {
   event.preventDefault();
   dispatch({ type: LoginStart });
-  console.log(apiLogin, credentials);
   axiosWithAuth()
     .post(apiLogin, credentials)
     .then(res => dispatch({ type: LoginSuccess, payload: res.data.payload }))

@@ -6,6 +6,7 @@ const Login = ({ history, credentials, handleChange, login, error, token }) => {
   useEffect(() => {
     if (!!token) {
       localStorage.setItem("token", token);
+      history.push("/FriendList");
     }
   }, [token]);
 
