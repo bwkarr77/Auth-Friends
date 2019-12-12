@@ -6,7 +6,9 @@ import { logout } from "../actions/actions.jsx";
 const Logout = ({ logout }) => {
   return (
     <div>
-      <Link to="/" onClick={logout}></Link>
+      <Link to="/" onClick={logout}>
+        <h3>Log Out</h3>
+      </Link>
     </div>
   );
 };
