@@ -5,13 +5,18 @@ import {
   LoginStart,
   LoginSuccess,
   LoginFail,
-  HandleChange
+  HandleChange,
+  AddFriendStart,
+  AddFriendSuccess,
+  AddFriendFail,
+  Logout
 } from "../actions/actions.jsx";
 
 const initialState = {
   error: "",
   isFetching: false,
   isLoggingIn: false,
+  isAdding: false,
   friendsList: [],
   credentials: {},
   newFriend: {
@@ -69,6 +74,41 @@ export const rootReducer = (state = initialState, { type, payload }) => {
           ...state[payload.form],
           [payload.event.target.name]: payload.event.target.value
         }
+      };
+    case AddFriendStart:
+      return {
+        ...state,
+        isAdding: true,
+        err: ""
+      };
+    case AddFriendSuccess:
+      return {
+        ...state,
+        err: "",
+        friendsList: payload,
+        isAdding: false
+      };
+    case AddFriendFail:
+      return {
+        ...state,
+        isAdding: false,
+        err: ""
+      };
+    case Logout:
+      return {
+        ...state,
+        error: "",
+        isFetching: false,
+        isLoggingIn: false,
+        isAdding: false,
+        friendsList: [],
+        credentials: {},
+        newFriend: {
+          name: "",
+          age: "",
+          email: ""
+        },
+        token: ""
       };
     default:
       return state;

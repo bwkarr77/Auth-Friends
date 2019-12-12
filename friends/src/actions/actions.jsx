@@ -6,6 +6,10 @@ export const GetFriendsFail = "GetFriendsFail";
 export const LoginStart = "LoginStart";
 export const LoginSuccess = "LoginSuccess";
 export const LoginFail = "LoginFail";
+export const AddFriendStart = "AddFriendStart";
+export const AddFriendSuccess = "AddFriendSuccess";
+export const AddFriendFail = "AddFriendFail";
+export const Logout = "Logout";
 
 export const HandleChange = "HandleChange";
 export const c1 = "c1";
@@ -48,3 +52,21 @@ export const handleChange = (event, formType) => ({
   type: HandleChange,
   payload: { event: event, form: formType }
 });
+
+export const addFriend = (event, newFriend) => dispatch => {
+  event.preventDefault();
+  dispatch({ type: AddFriendStart });
+  axiosWithAuth()
+    .post(apiFriends, newFriend)
+    .then(res =>
+      dispatch({ type: AddFriendSuccess, payload: res.data.payload })
+    )
+    .catch(err => {
+      return dispatch({ type: AddFriendFail, payload: err });
+    });
+};
+
+export const logout = () => dispatch => {
+  localStorage.clear();
+  dispatch({ type: Logout });
+};

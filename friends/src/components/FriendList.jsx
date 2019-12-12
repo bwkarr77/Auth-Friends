@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { axiosWithAuth } from "./axiosWithAuth";
 import { getFriends } from "../actions/actions";
 import Friend from "./Friend";
+import Logout from "./Logout";
+import AddFriend from "./AddFriend";
 const getUrl = "http://localhost:5000/api/friends";
 
 const FriendList = ({ friendsList, getFriends, isFetching }) => {
@@ -19,6 +21,8 @@ const FriendList = ({ friendsList, getFriends, isFetching }) => {
         friendsList.map(friend => {
           return <Friend key={friend.id} friend={friend} />;
         })}
+      <AddFriend />
+      <Logout />
     </div>
   );
 };
